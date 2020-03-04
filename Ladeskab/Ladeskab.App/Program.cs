@@ -1,10 +1,13 @@
-﻿    using System;
+﻿using System;
+using Ladeskab;
 
+namespace Ladeskab.App
+{
     class Program
     {
         static void Main(string[] args)
         {
-				// Assemble your system here from all the classes
+            Door door = new Door();
 
             bool finish = false;
             do
@@ -39,7 +42,6 @@
                     default:
                         break;
                 }
-
             } while (!finish);
         }
     }

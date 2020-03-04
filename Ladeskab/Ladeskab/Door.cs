@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Ladeskab
 {
-    class Door
+    public class Door
     {
+        public Door()
+        {
+
+        }
     }
 }
