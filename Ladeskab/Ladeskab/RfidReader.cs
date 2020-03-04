@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ladeskab
 {
-    public class Display
+    public class RfidReader
     {
     }
 }
