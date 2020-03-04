@@ -24,11 +24,11 @@ namespace Ladeskab.App
                         break;
 
                     case 'O':
-                        door.OnDoorOpen();
+                        door.OpenDoor();
                         break;
 
                     case 'C':
-                        door.OnDoorClose();
+                        door.CloseDoor();
                         break;
 
                     case 'R':
