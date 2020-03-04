@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IUsbCharger.cs" />
     <Compile Include="RfidReader.cs" />
     <Compile Include="USBCharger.cs" />
     <Compile Include="ChargeControl.cs" />
