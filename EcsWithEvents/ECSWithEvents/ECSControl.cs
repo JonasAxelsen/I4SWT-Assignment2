@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace ECSWithEvents
 {
-
     public class ECSControl
     {
         private readonly IHeater _heater;
