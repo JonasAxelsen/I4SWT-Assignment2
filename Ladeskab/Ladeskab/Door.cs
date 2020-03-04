@@ -8,12 +8,23 @@ namespace Ladeskab
 {
     public class Door
     {
-
         private bool open;
+        private bool locked;
 
         public Door()
         {
             open = false;
+            locked = false;
+        }
+
+        public void LockDoor()
+        {
+            locked = true;
+        }
+
+        public void UnlockDoor()
+        {
+            locked = false;
         }
 
         public void OpenDoor()
