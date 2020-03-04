@@ -8,6 +8,7 @@ namespace Ladeskab.App
         static void Main(string[] args)
         {
             Door door = new Door();
+            RfidReader rfidReader = new RfidReader();
 
             bool finish = false;
             do
@@ -36,7 +37,7 @@ namespace Ladeskab.App
                         string idString = System.Console.ReadLine();
 
                         int id = Convert.ToInt32(idString);
-                        rfidReader.OnRfidRead(id);
+                        rfidReader.ReadRfid(id);
                         break;
 
                     default:
