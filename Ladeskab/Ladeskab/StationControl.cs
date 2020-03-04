@@ -82,5 +82,25 @@ namespace Ladeskab
         }
 
         // Her mangler de andre trigger handlere
+
+        void LogDoorUnlocked(int ID)
+        {
+            DateTime timeStamp = new DateTime();
+            
+            if (!File.Exists(logFile))
+            {
+                using (StreamWriter output = File.CreateText(logFile))
+                {
+                    output.WriteLine($"Door Unlocked at {timeStamp.TimeOfDay:g2} by {ID}");
+                }
+            }
+            else
+            {
+                using (StreamWriter output = File.AppendText(logFile))
+                {
+                    output.WriteLine($"Door Unlocked at {timeStamp.TimeOfDay:g2} by {ID}");
+                }
+            }
+        }
     }
 }
