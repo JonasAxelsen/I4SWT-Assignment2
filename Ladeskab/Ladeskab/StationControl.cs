@@ -23,7 +23,7 @@ namespace Ladeskab
         private IUsbCharger _charger;
         private int _oldId;
 
-        private string logFile = "logfile.txt"; // Navnet på systemets log-fil
+        private string _logFile = "logfile.txt"; // Navnet på systemets log-fil
 
         //TODO: Her mangler constructor
 
@@ -85,20 +85,18 @@ namespace Ladeskab
 
         void LogDoorUnlocked(int ID)
         {
-            DateTime timeStamp = new DateTime();
-            
-            if (!File.Exists(logFile))
+            if (!File.Exists(_logFile))
             {
-                using (StreamWriter output = File.CreateText(logFile))
+                using (StreamWriter output = File.CreateText(_logFile))
                 {
-                    output.WriteLine($"Door Unlocked at {timeStamp.TimeOfDay:g2} by {ID}");
+                    output.WriteLine($"Door Unlocked at {DateTime.Now:T} by {ID}");
                 }
             }
             else
             {
-                using (StreamWriter output = File.AppendText(logFile))
+                using (StreamWriter output = File.AppendText(_logFile))
                 {
-                    output.WriteLine($"Door Unlocked at {timeStamp.TimeOfDay:g2} by {ID}");
+                    output.WriteLine($"Door Unlocked at {DateTime.Now:T} by {ID}");
                 }
             }
         }
