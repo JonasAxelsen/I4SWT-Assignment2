@@ -1,5 +1,6 @@
 ﻿using System;
 using Ladeskab;
+using Ladeskab.UsbSimulator;
 
 namespace Ladeskab.App
 {
@@ -9,6 +10,8 @@ namespace Ladeskab.App
         {
             Door door = new Door();
             RfidReader rfidReader = new RfidReader();
+            UsbChargerSimulator usbSim = new UsbChargerSimulator();
+            StationControl station = new StationControl(rfidReader, door, usbSim);
 
             bool finish = false;
             do
