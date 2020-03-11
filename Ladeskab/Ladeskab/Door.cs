@@ -29,7 +29,7 @@ namespace Ladeskab
 
         public void OpenDoor()
         {
-            if (open == false)
+            if (open == false && locked == false)
             {
                 open = true;
                 OnDoorOpen(new DoorOpenEventArgs());
