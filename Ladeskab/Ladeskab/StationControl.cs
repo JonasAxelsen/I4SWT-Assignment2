@@ -24,7 +24,7 @@ namespace Ladeskab
         private int _oldId;
         private Door _door;
 
-        private string _logFile = "logfile.txt"; // Navnet på systemets log-fil
+        private string _logFile = "../../logfile.txt"; // Navnet på systemets log-fil
 
         //TODO: Her mangler constructor
 
@@ -84,7 +84,7 @@ namespace Ladeskab
 
         // Her mangler de andre trigger handlere
 
-        void LogDoorUnlocked(int ID)
+        private void LogDoorUnlocked(int ID)
         {
             if (!File.Exists(_logFile))
             {
