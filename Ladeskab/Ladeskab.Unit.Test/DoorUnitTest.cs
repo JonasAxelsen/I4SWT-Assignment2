@@ -7,6 +7,7 @@ using NUnit.Framework;
 
 namespace Ladeskab.Unit.Test
 {
+
     [TestFixture]
     public class DoorUnitTestOpenDoor
     {
@@ -24,6 +25,24 @@ namespace Ladeskab.Unit.Test
 
             _uut.DoorCloseEvent += (o, args) => { _recivedCloseEventArgs = args; };
             _uut.DoorOpenEvent += (o, args) => { _recivedOpenEventArgs = args; };
+        }
+
+        [Test]
+        public void OpenDoor_CalledFromLockedObject_OpenEventNotFired()
+        {
+            _uut.LockDoor();
+            _uut.OpenDoor();
+
+            Assert.That(_recivedOpenEventArgs, Is.Null);
+        }
+
+        [Test]
+        public void OpenDoor_CalledFromLockedObject_CloseEventNotFired()
+        {
+            _uut.LockDoor();
+            _uut.OpenDoor();
+
+            Assert.That(_recivedCloseEventArgs, Is.Null);
         }
 
         [Test]
