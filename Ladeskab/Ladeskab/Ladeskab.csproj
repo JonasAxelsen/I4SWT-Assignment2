@@ -51,9 +51,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsbSimulator\UsbChargerSimulator.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="logfile.txt" />
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
