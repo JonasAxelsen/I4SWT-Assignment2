@@ -38,7 +38,7 @@ namespace Ladeskab
 
         public void CloseDoor()
         {
-            if (open = true)
+            if (open == true)
             {
                 open = false;
                 OnDoorClose(new DoorCloseEventArgs());
