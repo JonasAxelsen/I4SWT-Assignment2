@@ -87,6 +87,7 @@ namespace Ladeskab.Unit.Test
         {
             _uut.CloseDoor();
 
+
             Assert.That(_recivedOpenEventArgs, Is.Null);
         }
 
