@@ -31,14 +31,13 @@ namespace Ladeskab
             if(IsConnected())
             {
                 _usbCharger.StartCharge();
-                //do some charging
             }
         }
+
         public void StopCharge()
         {
             if(IsConnected())
             {
-                //stop the charge
                 _usbCharger.StopCharge();
             }
         }
