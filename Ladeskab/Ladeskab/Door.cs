@@ -8,43 +8,49 @@ namespace Ladeskab
 {
     public class Door
     {
-        private bool open;
-        private bool locked;
+        private bool _open;
+        private bool _locked;
 
         public Door()
         {
-            open = false;
-            locked = false;
+            _open = false;
+            _locked = false;
         }
 
         public void LockDoor()
         {
-            locked = true;
+            if (!_open)
+            {
+                _locked = true;
+            }
+            else
+            {
+                throw new InvalidOperationException("Cannot lock an open door.");
+            }
         }
 
         public void UnlockDoor()
         {
-            locked = false;
+            _locked = false;
         }
 
         public void OpenDoor()
         {
-            if (open == false && locked == false)
+            if (!_open && !_locked)
             {
-                open = true;
+                _open = true;
                 OnDoorOpen(new DoorOpenEventArgs());
             }
         }
 
         public void CloseDoor()
         {
-            if (open == true)
+            if (_open)
             {
-                open = false;
+                _open = false;
                 OnDoorClose(new DoorCloseEventArgs());
             }
         }
-
 
         // Events
         public event EventHandler<DoorOpenEventArgs> DoorOpenEvent;
@@ -60,15 +66,8 @@ namespace Ladeskab
         }
     }
 
-
     // Event Args
-    public class DoorOpenEventArgs : EventArgs
-    {
-        // TODO: Add attributes?
-    }
+    public class DoorOpenEventArgs : EventArgs { }
 
-    public class DoorCloseEventArgs : EventArgs
-    {
-        // TODO: Add attributes?
-    }
+    public class DoorCloseEventArgs : EventArgs { }
 }

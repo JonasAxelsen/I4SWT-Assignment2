@@ -107,7 +107,6 @@ namespace Ladeskab
             Console.WriteLine("Indlæs RFID");
         }
 
-
         private void LogDoorUnlocked(int ID)
         {
             if (!File.Exists(_logFile))

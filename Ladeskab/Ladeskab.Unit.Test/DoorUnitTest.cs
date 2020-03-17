@@ -96,5 +96,20 @@ namespace Ladeskab.Unit.Test
 
             Assert.That(_recivedCloseEventArgs, Is.Not.Null);
         }
+
+        [Test]
+        public void CloseDoor_CalledLockedonOpenDoor_ThrowException()
+        {
+            Assert.That(()=>_uut.LockDoor(),
+                Throws.TypeOf<InvalidOperationException>());
+        }
+
+        [Test]
+        public void CloseDoor_CalledLockedonOpenDoor_ThrowExceptionMessage()
+        {
+            var ex = Assert.Catch(() => _uut.LockDoor());
+
+            Assert.That(ex.Message,Is.EqualTo("Cannot lock an open door."));
+        }
     }
 }
