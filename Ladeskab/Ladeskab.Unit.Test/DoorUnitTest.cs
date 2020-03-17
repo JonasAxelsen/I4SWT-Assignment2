@@ -71,6 +71,7 @@ namespace Ladeskab.Unit.Test
         [SetUp]
         public void Setup()
         {
+
             _uut = new Door();
             _uut.OpenDoor();
 
