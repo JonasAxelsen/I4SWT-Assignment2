@@ -115,7 +115,6 @@ namespace Ladeskab
             _display.displayMessage("Indlæs RFID");
         }
 
-
         private void LogDoorUnlocked(int ID)
         {
             if (!File.Exists(_logFile))
