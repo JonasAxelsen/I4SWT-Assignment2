@@ -9,15 +9,18 @@ namespace Ladeskab.App
         static void Main(string[] args)
         {
             Door door = new Door();
+            Display display = new Display();
             RfidReader rfidReader = new RfidReader();
             UsbChargerSimulator usbSim = new UsbChargerSimulator();
-            StationControl station = new StationControl(rfidReader, door, usbSim);
+            ChargeControl charger = new ChargeControl(usbSim);
+            StationControl station = new StationControl(rfidReader, door, charger, display);
 
             bool finish = false;
             do
             {
                 string input;
-                System.Console.WriteLine("Indtast E, O, C, R: ");
+                //System.Console.WriteLine("Indtast E, O, C, R: ");
+                display.displayMessage("Indtast E, O, C, R: ");
                 input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input)) continue;
 
@@ -36,7 +39,8 @@ namespace Ladeskab.App
                         break;
 
                     case 'R':
-                        System.Console.WriteLine("Indtast RFID id: ");
+                        //System.Console.WriteLine("Indtast RFID id: ");
+                        display.displayMessage("Indtast RFID id: ");
                         string idString = System.Console.ReadLine();
 
                         int id = Convert.ToInt32(idString);
