@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace Ladeskab.Unit.Test
 {
     [TestFixture]
-    public class DoorUnitTestOpenDoor
+    public class DoorUnitTest
     {
         private Door _uut;
         private DoorCloseEventArgs _recivedCloseEventArgs;
@@ -26,6 +26,7 @@ namespace Ladeskab.Unit.Test
             _uut.DoorOpenEvent += (o, args) => { _recivedOpenEventArgs = args; };
         }
 
+        #region OpenDoor
         [Test]
         public void OpenDoor_CalledFromLockedObject_OpenEventNotFired()
         {
@@ -79,30 +80,21 @@ namespace Ladeskab.Unit.Test
 
             Assert.That(_recivedCloseEventArgs, Is.Null);
         }
-    }
+        #endregion
 
-    public class DoorUnitTestCloseDoor
-    {
-        private Door _uut;
-        private DoorCloseEventArgs _recivedCloseEventArgs;
-        private DoorOpenEventArgs _recivedOpenEventArgs;
 
-        [SetUp]
-        public void Setup()
+        #region CloseDoor
+        public void OpenDoor_ResetEventListener()
         {
-            _uut = new Door();
             _uut.OpenDoor();
-
             _recivedCloseEventArgs = null;
             _recivedOpenEventArgs = null;
-
-            _uut.DoorCloseEvent += (o, args) => { _recivedCloseEventArgs = args; };
-            _uut.DoorOpenEvent += (o, args) => { _recivedOpenEventArgs = args; };
         }
 
         [Test]
         public void CloseDoor_CalledFromNewObject_OpenEventNotFired()
         {
+            OpenDoor_ResetEventListener();
             _uut.CloseDoor();
 
 
@@ -112,6 +104,7 @@ namespace Ladeskab.Unit.Test
         [Test]
         public void CloseDoor_CalledFromNewObject_CloseEventFired()
         {
+            OpenDoor_ResetEventListener();
             _uut.CloseDoor();
 
             Assert.That(_recivedCloseEventArgs, Is.Not.Null);
@@ -120,16 +113,22 @@ namespace Ladeskab.Unit.Test
         [Test]
         public void CloseDoor_CalledLockedonOpenDoor_ThrowExceptionType()
         {
-            Assert.That(()=>_uut.LockDoor(),
+            OpenDoor_ResetEventListener();
+
+            Assert.That(() => _uut.LockDoor(),
                 Throws.TypeOf<InvalidOperationException>());
         }
 
         [Test]
         public void CloseDoor_CalledLockedonOpenDoor_ThrowExceptionMessage()
         {
+            OpenDoor_ResetEventListener();
+
             var ex = Assert.Catch(() => _uut.LockDoor());
 
-            Assert.That(ex.Message,Is.EqualTo("Cannot lock an open door."));
+            Assert.That(ex.Message, Is.EqualTo("Cannot lock an open door."));
         }
+
+        #endregion
     }
 }
