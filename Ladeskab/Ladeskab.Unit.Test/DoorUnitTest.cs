@@ -44,6 +44,26 @@ namespace Ladeskab.Unit.Test
 
             Assert.That(_recivedCloseEventArgs, Is.Null);
         }
+        
+        [Test]
+        public void OpenDoor_CalledFromUnlockedObject_OpenEventFired()
+        {
+            _uut.LockDoor();
+            _uut.UnlockDoor();
+            _uut.OpenDoor();
+
+            Assert.That(_recivedOpenEventArgs, Is.Not.Null);
+        }
+
+        [Test]
+        public void OpenDoor_CalledFromUnlockedObject_CloseEventNotFired()
+        {
+            _uut.LockDoor();
+            _uut.UnlockDoor();
+            _uut.OpenDoor();
+
+            Assert.That(_recivedCloseEventArgs, Is.Null);
+        }
 
         [Test]
         public void OpenDoor_CalledFromNewObject_OpenEventFired()
@@ -100,7 +120,7 @@ namespace Ladeskab.Unit.Test
         }
 
         [Test]
-        public void CloseDoor_CalledLockedonOpenDoor_ThrowException()
+        public void CloseDoor_CalledLockedonOpenDoor_ThrowExceptionType()
         {
             Assert.That(()=>_uut.LockDoor(),
                 Throws.TypeOf<InvalidOperationException>());
@@ -110,7 +130,6 @@ namespace Ladeskab.Unit.Test
         public void CloseDoor_CalledLockedonOpenDoor_ThrowExceptionMessage()
         {
             var ex = Assert.Catch(() => _uut.LockDoor());
-
 
             Assert.That(ex.Message,Is.EqualTo("Cannot lock an open door."));
         }
