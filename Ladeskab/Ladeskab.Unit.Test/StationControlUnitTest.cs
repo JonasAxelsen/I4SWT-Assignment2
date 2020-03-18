@@ -206,7 +206,41 @@ namespace Ladeskab.Unit.Test
 
         #endregion
 
+        #region Locked
 
+        #region CorrectId
+
+        // RfidDetected_Locked_CorrectId
+        // RfidDetected_Locked_CorrectId_StopCharge_Called
+        // RfidDetected_Locked_CorrectId_UnlockDoor_Called
+        // RfidDetected_Locked_CorrectId_LogDoorUnlocked_Called
+        // RfidDetected_Locked_CorrectId_StationMessage_Called
+
+        [Test]
+        public void RfidDetected_Locked_CorrectId_StopCharge_Called()
+        {
+            // Arrange
+
+            // Act
+            // TODO: Jeg stopper her, fordi StationControl er helt forkert. Den kan ikke komme i stadiet Locked. Den tjekker ikke om døren er locked + den gør ikke noget når døren lukkes/åbnes. Af Valdemar 18-03-2020
+
+
+            // Assert
+
+        }
+
+        #endregion
+
+        #region WrongId
+
+        // RfidDetected_Locked_WrongId ........
+
+        // TODO: Har skal der testes det modsatte af hvad der sker hvis id er korrekt. Lav CorrectId først!
+
+        #endregion
+
+
+        #endregion
 
 
         #endregion
