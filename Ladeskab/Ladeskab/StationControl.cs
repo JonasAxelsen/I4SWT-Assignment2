@@ -29,7 +29,8 @@ namespace Ladeskab
 
         private int _oldId;
 
-        public StationControl(IRfidReader rfidReader,
+        public StationControl(
+            IRfidReader rfidReader,
             IDoor door,
             IChargeControl charger,
             IDisplay display,
