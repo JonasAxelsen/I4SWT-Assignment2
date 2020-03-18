@@ -84,7 +84,7 @@ namespace Ladeskab.Unit.Test
 
 
         #region CloseDoor
-        public void OpenDoor_ResetEventListener()
+        public void SetupCloseDoor_OpenDoor_ResetEventListener()
         {
             _uut.OpenDoor();
             _recivedCloseEventArgs = null;
@@ -94,7 +94,7 @@ namespace Ladeskab.Unit.Test
         [Test]
         public void CloseDoor_CalledFromNewObject_OpenEventNotFired()
         {
-            OpenDoor_ResetEventListener();
+            SetupCloseDoor_OpenDoor_ResetEventListener();
             _uut.CloseDoor();
 
 
@@ -104,7 +104,7 @@ namespace Ladeskab.Unit.Test
         [Test]
         public void CloseDoor_CalledFromNewObject_CloseEventFired()
         {
-            OpenDoor_ResetEventListener();
+            SetupCloseDoor_OpenDoor_ResetEventListener();
             _uut.CloseDoor();
 
             Assert.That(_recivedCloseEventArgs, Is.Not.Null);
@@ -113,7 +113,7 @@ namespace Ladeskab.Unit.Test
         [Test]
         public void CloseDoor_CalledLockedonOpenDoor_ThrowExceptionType()
         {
-            OpenDoor_ResetEventListener();
+            SetupCloseDoor_OpenDoor_ResetEventListener();
 
             Assert.That(() => _uut.LockDoor(),
                 Throws.TypeOf<InvalidOperationException>());
@@ -122,7 +122,7 @@ namespace Ladeskab.Unit.Test
         [Test]
         public void CloseDoor_CalledLockedonOpenDoor_ThrowExceptionMessage()
         {
-            OpenDoor_ResetEventListener();
+            SetupCloseDoor_OpenDoor_ResetEventListener();
 
             var ex = Assert.Catch(() => _uut.LockDoor());
 
