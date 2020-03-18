@@ -22,20 +22,20 @@ namespace Ladeskab
         // Her mangler flere member variable
         private LadeskabState _state;
         private ChargeControl _charger;
-        private int _oldId;
         private Door _door;
         private RfidReader _rfidReader;
         private Display _display;
+        private Logger _log;
 
-        private string _logFile = "../../logfile.txt"; // Navnet på systemets log-fil
+        private int _oldId;
 
-        //TODO: Her mangler constructor
-        public StationControl(RfidReader rfidReader, Door door, ChargeControl charger, Display display)
+        public StationControl(RfidReader rfidReader, Door door, ChargeControl charger, Display display, Logger log)
         { 
             _rfidReader = rfidReader;
             _door = door;
             _charger = charger;
             _display = display;
+            _log = log;
 
             rfidReader.RfidReadEvent += RfidDetected;
             _door.DoorOpenEvent += DoorOpened;
@@ -54,11 +54,7 @@ namespace Ladeskab
                         _door.LockDoor();
                         _charger.StartCharge();
                         _oldId = e.Id;
-                        LogDoorLocked(_oldId);
-                        using (var writer = File.AppendText(_logFile))
-                        {
-                            writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", e.Id);
-                        }
+                        _log.LogDoorLocked(_oldId);
 
                         //Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
                         _display.displayMessage("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
@@ -82,19 +78,13 @@ namespace Ladeskab
                     {
                         _charger.StopCharge();
                         _door.UnlockDoor();
-                        LogDoorUnlocked(_oldId);
-                        using (var writer = File.AppendText(_logFile))
-                        {
-                            writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", e.Id);
-                        }
+                        _log.LogDoorUnlocked(_oldId);
 
-                        //Console.WriteLine("Tag din telefon ud af skabet og luk døren");
                         _display.displayMessage("Tag din telefon ud af skabet og luk døren");
                         _state = LadeskabState.Available;
                     }
                     else
                     {
-                        //Console.WriteLine("Forkert RFID tag");
                         _display.displayMessage("Forkert RFID tag");
                     }
 
@@ -105,50 +95,13 @@ namespace Ladeskab
         // Her mangler de andre trigger handlere
         private void DoorOpened(object sender, DoorOpenEventArgs e)
         {
-            //Console.WriteLine("Tilslut telefon!");
             _display.displayMessage("Tilslut telefon!");
         }
 
         private void DoorClosed(object sender, DoorCloseEventArgs e)
         {
-            //Console.WriteLine("Indlæs RFID");
             _display.displayMessage("Indlæs RFID");
         }
 
-        private void LogDoorUnlocked(int ID)
-        {
-            if (!File.Exists(_logFile))
-            {
-                using (StreamWriter output = File.CreateText(_logFile))
-                {
-                    output.WriteLine($"Door Unlocked at {DateTime.Now:T} by {ID}");
-                }
-            }
-            else
-            {
-                using (StreamWriter output = File.AppendText(_logFile))
-                {
-                    output.WriteLine($"Door Unlocked at {DateTime.Now:T} by {ID}");
-                }
-            }
-        }
-
-        private void LogDoorLocked(int ID)
-        {
-            if (!File.Exists(_logFile))
-            {
-                using (StreamWriter output = File.CreateText(_logFile))
-                {
-                    output.WriteLine($"Door locked at {DateTime.Now:T} by {ID}");
-                }
-            }
-            else
-            {
-                using (StreamWriter output = File.AppendText(_logFile))
-                {
-                    output.WriteLine($"Door locked at {DateTime.Now:T} by {ID}");
-                }
-            }
-        }
     }
 }

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logger.cs" />
     <Compile Include="UsbSimulator\IUsbCharger.cs" />
     <Compile Include="RfidReader.cs" />
     <Compile Include="ChargeControl.cs" />
