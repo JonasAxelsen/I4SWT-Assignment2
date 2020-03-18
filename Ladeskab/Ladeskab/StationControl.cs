@@ -61,14 +61,14 @@ namespace Ladeskab
                         _log.LogDoorLocked(_oldId);
 
                         //Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
-                        _display.DisplayMessage(
+                        _display.StationMessage(
                             "Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
                         _state = LadeskabState.Locked;
                     }
                     else
                     {
                         //Console.WriteLine("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
-                        _display.DisplayMessage("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
+                        _display.StationMessage("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
                     }
 
                     break;
@@ -85,12 +85,12 @@ namespace Ladeskab
                         _door.UnlockDoor();
                         _log.LogDoorUnlocked(_oldId);
 
-                        _display.DisplayMessage("Tag din telefon ud af skabet og luk døren");
+                        _display.StationMessage("Tag din telefon ud af skabet og luk døren");
                         _state = LadeskabState.Available;
                     }
                     else
                     {
-                        _display.DisplayMessage("Forkert RFID tag");
+                        _display.StationMessage("Forkert RFID tag");
                     }
 
                     break;
@@ -100,12 +100,12 @@ namespace Ladeskab
         // Her mangler de andre trigger handlere
         private void DoorOpened(object sender, DoorOpenEventArgs e)
         {
-            _display.DisplayMessage("Tilslut telefon!");
+            _display.StationMessage("Tilslut telefon!");
         }
 
         private void DoorClosed(object sender, DoorCloseEventArgs e)
         {
-            _display.DisplayMessage("Indlæs RFID");
+            _display.StationMessage("Indlæs RFID");
         }
     }
 }

@@ -49,7 +49,8 @@ namespace Ladeskab
             if (e.Current > 5 && e.Current <= 500)
             {
                 //Ladning forløber normalt
-                _display.displayMessage("Ladestrømmen er " + e.Current + " mA");
+                //display.DisplayMessage("Ladestrømmen er " + e.Current + " mA");
+                Console.Write("Ladestrømmen er " + e.Current.ToString("0.00") + " mA" + "\r");
                 return;
             }
 
@@ -57,7 +58,7 @@ namespace Ladeskab
             {
                 //Ladning er fuldført
                 StopCharge();
-                _display.displayMessage("Ladningen er stoppet");
+                _display.ChargingMessage("Telefonen er ladet fuldt op ladningen er stoppet\r");
                 return;
             }
 
@@ -65,7 +66,7 @@ namespace Ladeskab
             {
                 //Noget er galt evt. kortslutning så ladning skal stoppes omgående!
                 StopCharge();
-                _display.displayMessage("Ladningen er stoppet. Ladestrøm for høj!");
+                _display.ChargingMessage("Ladningen er stoppet. Ladestrøm for høj!\r");
             }
         }
     }

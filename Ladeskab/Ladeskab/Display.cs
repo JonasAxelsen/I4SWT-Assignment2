@@ -12,9 +12,14 @@ namespace Ladeskab
         {
         }
 
-        public void DisplayMessage(string message)
+        public void StationMessage(string message)
         {
             System.Console.WriteLine(message);
+        }
+
+        public void ChargingMessage(string message)
+        {
+            System.Console.Write(message);
         }
     }
 }

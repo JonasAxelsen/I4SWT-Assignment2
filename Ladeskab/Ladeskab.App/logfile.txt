@@ -50,3 +50,9 @@ Door locked at 14:20:21 by 123
 18-03-2020 14:20:21: Skab låst med RFID: 123
 Door locked at 14:24:09 by 123
 18-03-2020 14:24:09: Skab låst med RFID: 123
+Door locked at 14:31:19 by 123
+Door Unlocked at 14:32:21 by 123
+Door locked at 14:35:13 by 123
+Door locked at 14:38:35 by 123
+Door locked at 14:43:43 by 123
+Door locked at 14:45:32 by 123
