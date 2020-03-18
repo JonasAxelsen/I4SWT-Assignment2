@@ -12,7 +12,7 @@ namespace Ladeskab
         {
         }
 
-        public void displayMessage(string message)
+        public void DisplayMessage(string message)
         {
             System.Console.WriteLine(message);
         }
