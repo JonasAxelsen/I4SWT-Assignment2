@@ -19,13 +19,12 @@ namespace Ladeskab.App
             bool finish = false;
             do
             {
-                string input;
+                char input;
                 //System.Console.WriteLine("Indtast E, O, C, R: ");
-                display.StationMessage("Indtast E, O, C, R: ");
-                input = Console.ReadLine();
-                if (string.IsNullOrEmpty(input)) continue;
+                display.StationMessage("Indtast (E)xit, (O)pen door, (C)lose door, (R)FID: ");
+                input = Console.ReadKey(true).KeyChar;
 
-                switch (input[0])
+                switch (Char.ToUpper(input))
                 {
                     case 'E':
                         finish = true;
