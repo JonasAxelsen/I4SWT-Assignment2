@@ -19,10 +19,10 @@ namespace Ladeskab
     {
         public bool Connected { get; set; }
 
-        private UsbChargerSimulator _usbCharger;
-        private Display _display;
+        private IUsbCharger _usbCharger;
+        private IDisplay _display;
         
-        public ChargeControl(UsbChargerSimulator usbCharger, Display display)
+        public ChargeControl(IUsbCharger usbCharger, IDisplay display)
         {
             Connected = false;
             _usbCharger = usbCharger;
@@ -34,7 +34,7 @@ namespace Ladeskab
         {
             // Kan ikke kalde _usbCharger.SimulateConnected fordi det ikke er en del af IUsbCharger interface
             // UsbChargerSimulator forventer mere (precondition) end IUsbCharger. Bryder med Liskov substitution principle.
-            _usbCharger.SimulateConnected(true);
+            //_usbCharger.SimulateConnected(true);
             return _usbCharger.Connected;
         }
 

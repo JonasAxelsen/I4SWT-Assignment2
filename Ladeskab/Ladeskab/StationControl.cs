@@ -21,19 +21,19 @@ namespace Ladeskab
 
         // Her mangler flere member variable
         private LadeskabState _state;
-        private ChargeControl _charger;
-        private Door _door;
-        private RfidReader _rfidReader;
-        private Display _display;
-        private Logger _log;
+        private IChargeControl _charger;
+        private IDoor _door;
+        private IRfidReader _rfidReader;
+        private IDisplay _display;
+        private ILogger _log;
 
         private int _oldId;
 
-        public StationControl(RfidReader rfidReader,
-            Door door,
-            ChargeControl charger,
-            Display display,
-            Logger log)
+        public StationControl(IRfidReader rfidReader,
+            IDoor door,
+            IChargeControl charger,
+            IDisplay display,
+            ILogger log)
         {
             _rfidReader = rfidReader;
             _door = door;
