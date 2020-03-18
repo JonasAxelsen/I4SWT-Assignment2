@@ -111,6 +111,7 @@ namespace Ladeskab.Unit.Test
         {
             var ex = Assert.Catch(() => _uut.LockDoor());
 
+
             Assert.That(ex.Message,Is.EqualTo("Cannot lock an open door."));
         }
     }
