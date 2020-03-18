@@ -12,7 +12,7 @@ namespace Ladeskab.App
             Display display = new Display();
             RfidReader rfidReader = new RfidReader();
             UsbChargerSimulator usbSim = new UsbChargerSimulator();
-            ChargeControl charger = new ChargeControl(usbSim);
+            ChargeControl charger = new ChargeControl(usbSim, display);
             StationControl station = new StationControl(rfidReader, door, charger, display);
 
             bool finish = false;

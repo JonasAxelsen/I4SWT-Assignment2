@@ -12,12 +12,14 @@ namespace Ladeskab
         public bool connected { private get; set; }
 
         private UsbChargerSimulator _usbCharger;
+        private Display _display;
         
-        public ChargeControl(UsbChargerSimulator usbCharger)
+        public ChargeControl(UsbChargerSimulator usbCharger, Display display)
         {
             connected = false;
             _usbCharger = usbCharger;
             _usbCharger.CurrentValueEvent += ReadCurrentValue;
+            _display = display;
         }
         public bool IsConnected()
         {
@@ -44,7 +46,27 @@ namespace Ladeskab
 
         public void ReadCurrentValue(object sender, CurrentEventArgs e)
         {
-            Console.WriteLine(e.Current);
+            if (e.Current > 5 && e.Current <= 500)
+            {
+                //Ladning forløber normalt
+                _display.displayMessage("Ladestrømmen er " + e.Current + " mA");
+                return;
+            }
+
+            if (e.Current > 0 && e.Current <= 5)
+            {
+                //Ladning er fuldført
+                StopCharge();
+                _display.displayMessage("Ladningen er stoppet");
+                return;
+            }
+
+            if (e.Current > 500)
+            {
+                //Noget er galt evt. kortslutning så ladning skal stoppes omgående!
+                StopCharge();
+                _display.displayMessage("Ladningen er stoppet. Ladestrøm for høj!");
+            }
         }
     }
 }
