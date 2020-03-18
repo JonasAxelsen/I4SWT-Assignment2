@@ -12,13 +12,14 @@ namespace Ladeskab
         public bool connected { private get; set; }
 
         private UsbChargerSimulator _usbCharger;
-        
+
         public ChargeControl(UsbChargerSimulator usbCharger)
         {
             connected = false;
             _usbCharger = usbCharger;
             _usbCharger.CurrentValueEvent += ReadCurrentValue;
         }
+
         public bool IsConnected()
         {
             // Kan ikke kalde _usbCharger.SimulateConnected fordi det ikke er en del af IUsbCharger interface
@@ -26,9 +27,10 @@ namespace Ladeskab
             _usbCharger.SimulateConnected(true);
             return _usbCharger.Connected;
         }
+
         public void StartCharge()
         {
-            if(IsConnected())
+            if (IsConnected())
             {
                 _usbCharger.StartCharge();
             }
@@ -36,7 +38,7 @@ namespace Ladeskab
 
         public void StopCharge()
         {
-            if(IsConnected())
+            if (IsConnected())
             {
                 _usbCharger.StopCharge();
             }

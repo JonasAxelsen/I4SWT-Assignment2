@@ -54,12 +54,14 @@ namespace Ladeskab
 
         // Events
         public event EventHandler<DoorOpenEventArgs> DoorOpenEvent;
+
         protected virtual void OnDoorOpen(DoorOpenEventArgs e)
         {
             DoorOpenEvent?.Invoke(this, e);
         }
 
         public event EventHandler<DoorCloseEventArgs> DoorCloseEvent;
+
         protected virtual void OnDoorClose(DoorCloseEventArgs e)
         {
             DoorCloseEvent?.Invoke(this, e);
@@ -67,7 +69,11 @@ namespace Ladeskab
     }
 
     // Event Args
-    public class DoorOpenEventArgs : EventArgs { }
+    public class DoorOpenEventArgs : EventArgs
+    {
+    }
 
-    public class DoorCloseEventArgs : EventArgs { }
+    public class DoorCloseEventArgs : EventArgs
+    {
+    }
 }

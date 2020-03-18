@@ -20,7 +20,7 @@ namespace Ladeskab.App
             {
                 string input;
                 //System.Console.WriteLine("Indtast E, O, C, R: ");
-                display.displayMessage("Indtast E, O, C, R: ");
+                display.DisplayMessage("Indtast E, O, C, R: ");
                 input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input)) continue;
 
@@ -40,7 +40,7 @@ namespace Ladeskab.App
 
                     case 'R':
                         //System.Console.WriteLine("Indtast RFID id: ");
-                        display.displayMessage("Indtast RFID id: ");
+                        display.DisplayMessage("Indtast RFID id: ");
                         string idString = System.Console.ReadLine();
 
                         int id = Convert.ToInt32(idString);

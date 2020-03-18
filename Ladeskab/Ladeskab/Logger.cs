@@ -16,38 +16,38 @@ namespace Ladeskab
             _logFile = logFile;
         }
 
-        public void LogDoorUnlocked(int ID)
+        public void LogDoorUnlocked(int id)
         {
             if (!File.Exists(_logFile))
             {
                 using (StreamWriter output = File.CreateText(_logFile))
                 {
-                    output.WriteLine($"Door Unlocked at {DateTime.Now:T} by {ID}");
+                    output.WriteLine($"Door Unlocked at {DateTime.Now:T} by {id}");
                 }
             }
             else
             {
                 using (StreamWriter output = File.AppendText(_logFile))
                 {
-                    output.WriteLine($"Door Unlocked at {DateTime.Now:T} by {ID}");
+                    output.WriteLine($"Door Unlocked at {DateTime.Now:T} by {id}");
                 }
             }
         }
 
-        public void LogDoorLocked(int ID)
+        public void LogDoorLocked(int id)
         {
             if (!File.Exists(_logFile))
             {
                 using (StreamWriter output = File.CreateText(_logFile))
                 {
-                    output.WriteLine($"Door locked at {DateTime.Now:T} by {ID}");
+                    output.WriteLine($"Door locked at {DateTime.Now:T} by {id}");
                 }
             }
             else
             {
                 using (StreamWriter output = File.AppendText(_logFile))
                 {
-                    output.WriteLine($"Door locked at {DateTime.Now:T} by {ID}");
+                    output.WriteLine($"Door locked at {DateTime.Now:T} by {id}");
                 }
             }
         }

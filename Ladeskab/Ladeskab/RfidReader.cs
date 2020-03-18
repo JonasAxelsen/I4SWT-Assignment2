@@ -10,7 +10,6 @@ namespace Ladeskab
     {
         public RfidReader()
         {
-
         }
 
         public void ReadRfid(int id)
@@ -20,6 +19,7 @@ namespace Ladeskab
 
         // Events
         public EventHandler<RfidReadEventArgs> RfidReadEvent;
+
         protected virtual void OnRfidRead(RfidReadEventArgs e)
         {
             RfidReadEvent?.Invoke(this, e);
@@ -29,6 +29,7 @@ namespace Ladeskab
     public class RfidReadEventArgs : EventArgs
     {
         public int Id { get; private set; }
+
         public RfidReadEventArgs(int id)
         {
             Id = id;
