@@ -9,7 +9,6 @@ namespace Ladeskab
 {
     public interface IChargeControl
     {
-        bool Connected { get; set; }
         bool IsConnected();
         void StartCharge();
         void StopCharge();
@@ -17,14 +16,11 @@ namespace Ladeskab
 
     public class ChargeControl : IChargeControl
     {
-        public bool Connected { get; set; }
-
         private IUsbCharger _usbCharger;
         private IDisplay _display;
         
         public ChargeControl(IUsbCharger usbCharger, IDisplay display)
         {
-            Connected = false;
             _usbCharger = usbCharger;
             _usbCharger.CurrentValueEvent += ReadCurrentValue;
             _display = display;
@@ -56,6 +52,11 @@ namespace Ladeskab
 
         private void ReadCurrentValue(object sender, CurrentEventArgs e)
         {
+            if (!IsConnected())
+            {
+                return;
+            }
+            
             if (e.Current > 5 && e.Current <= 500)
             {
                 //Ladning forløber normalt
