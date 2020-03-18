@@ -7,7 +7,6 @@ using NUnit.Framework;
 
 namespace Ladeskab.Unit.Test
 {
-
     [TestFixture]
     public class DoorUnitTestOpenDoor
     {
@@ -91,7 +90,6 @@ namespace Ladeskab.Unit.Test
         [SetUp]
         public void Setup()
         {
-
             _uut = new Door();
             _uut.OpenDoor();
 
