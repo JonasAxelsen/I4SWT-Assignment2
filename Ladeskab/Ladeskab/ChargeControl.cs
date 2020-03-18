@@ -7,20 +7,29 @@ using Ladeskab.UsbSimulator;
 
 namespace Ladeskab
 {
-    public class ChargeControl
+    public interface IChargeControl
     {
-        public bool connected { private get; set; }
+        bool Connected { get; set; }
+        bool IsConnected();
+        void StartCharge();
+        void StopCharge();
+    }
+
+    public class ChargeControl : IChargeControl
+    {
+        public bool Connected { get; set; }
 
         private UsbChargerSimulator _usbCharger;
         private Display _display;
         
         public ChargeControl(UsbChargerSimulator usbCharger, Display display)
         {
-            connected = false;
+            Connected = false;
             _usbCharger = usbCharger;
             _usbCharger.CurrentValueEvent += ReadCurrentValue;
             _display = display;
         }
+
         public bool IsConnected()
         {
             // Kan ikke kalde _usbCharger.SimulateConnected fordi det ikke er en del af IUsbCharger interface
@@ -28,6 +37,7 @@ namespace Ladeskab
             _usbCharger.SimulateConnected(true);
             return _usbCharger.Connected;
         }
+
         public void StartCharge()
         {
             if(IsConnected())
@@ -44,13 +54,12 @@ namespace Ladeskab
             }
         }
 
-        public void ReadCurrentValue(object sender, CurrentEventArgs e)
+        private void ReadCurrentValue(object sender, CurrentEventArgs e)
         {
             if (e.Current > 5 && e.Current <= 500)
             {
                 //Ladning forløber normalt
-                //display.DisplayMessage("Ladestrømmen er " + e.Current + " mA");
-                Console.Write("Ladestrømmen er " + e.Current.ToString("0.00") + " mA" + "\r");
+                _display.ChargingMessage("Ladestrømmen er " + e.Current.ToString("0.00") + " mA\r");
                 return;
             }
 

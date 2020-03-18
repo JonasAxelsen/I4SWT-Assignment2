@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Ladeskab
 {
-    public class Display
+    public interface IDisplay
+    {
+        void StationMessage(string message);
+        void ChargingMessage(string message);
+    }
+
+    public class Display : IDisplay
     {
         public Display()
         {

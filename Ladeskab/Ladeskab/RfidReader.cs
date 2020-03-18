@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Ladeskab
 {
-    public class RfidReader
+    public interface IRfidReader
+    {
+        void ReadRfid(int id);
+        event EventHandler<RfidReadEventArgs> RfidReadEvent;
+    }
+
+    public class RfidReader: IRfidReader
     {
         public RfidReader()
         {
@@ -18,7 +24,7 @@ namespace Ladeskab
         }
 
         // Events
-        public EventHandler<RfidReadEventArgs> RfidReadEvent;
+        public event EventHandler<RfidReadEventArgs> RfidReadEvent;
 
         protected virtual void OnRfidRead(RfidReadEventArgs e)
         {
@@ -34,7 +40,5 @@ namespace Ladeskab
         {
             Id = id;
         }
-
-        // TODO: Add attributes
     }
 }

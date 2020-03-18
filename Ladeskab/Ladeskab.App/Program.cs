@@ -40,7 +40,6 @@ namespace Ladeskab.App
                         break;
 
                     case 'R':
-                        //System.Console.WriteLine("Indtast RFID id: ");
                         display.StationMessage("Indtast RFID id: ");
                         string idString = System.Console.ReadLine();
 
