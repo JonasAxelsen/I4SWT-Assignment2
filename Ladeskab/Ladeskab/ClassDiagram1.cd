@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Ladeskab.StationControl">
+    <Position X="4.75" Y="2.25" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Ladeskab.StationControl.LadeskabState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>StationControl.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQBAAAAAAAAAEgAAAAACAAAAAQAEAAAECAAAAACAAA=</HashCode>
+      <FileName>StationControl.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_charger" />
+      <Field Name="_display" />
+      <Field Name="_door" />
+      <Field Name="_log" />
+      <Field Name="_rfidReader" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="Ladeskab.IChargeControl">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAEAAAAAQAAAAAA=</HashCode>
+      <FileName>ChargeControl.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Ladeskab.IDisplay">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Display.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Ladeskab.IDoor">
+    <Position X="2.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACCAACAAAAAAAAABEAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Door.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Ladeskab.ILogger">
+    <Position X="7.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logger.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Ladeskab.IRfidReader">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAEAAAA=</HashCode>
+      <FileName>RfidReader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -43,7 +43,7 @@ namespace Ladeskab
             _display = display;
             _log = log;
 
-            rfidReader.RfidReadEvent += RfidDetected;
+            _rfidReader.RfidReadEvent += RfidDetected;
             _door.DoorOpenEvent += DoorOpened;
             _door.DoorCloseEvent += DoorClosed;
         }
@@ -65,7 +65,7 @@ namespace Ladeskab
 
                         _state = LadeskabState.Locked;
                     }
-                    else
+                    else if (!_charger.IsConnected())
                     {
                         _display.StationMessage("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
                     }
@@ -73,11 +73,10 @@ namespace Ladeskab
                     break;
 
                 case LadeskabState.DoorOpen:
-                    // Ignore
+                    
                     break;
 
                 case LadeskabState.Locked:
-                    // Check for correct ID
                     if (e.Id == _oldId)
                     {
                         _charger.StopCharge();
@@ -99,12 +98,22 @@ namespace Ladeskab
         // Her mangler de andre trigger handlere
         private void DoorOpened(object sender, DoorOpenEventArgs e)
         {
-            _display.StationMessage("Tilslut telefon!");
+            if (_state == LadeskabState.Available)
+            {
+                _display.StationMessage("Tilslut telefon!");
+
+                _state = LadeskabState.DoorOpen;
+            }
         }
 
         private void DoorClosed(object sender, DoorCloseEventArgs e)
         {
-            _display.StationMessage("Indlæs RFID");
+            if (_state == LadeskabState.DoorOpen)
+            {
+                _display.StationMessage("Indlæs RFID");
+
+                _state = LadeskabState.Available;
+            }
         }
     }
 }
