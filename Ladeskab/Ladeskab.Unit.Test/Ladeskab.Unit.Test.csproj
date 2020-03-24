@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChargeControlUnitTest.cs" />
+    <Compile Include="DisplayUnitTest.cs" />
     <Compile Include="DoorUnitTest.cs" />
     <Compile Include="LoggerUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

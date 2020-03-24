@@ -12,6 +12,7 @@ namespace Ladeskab
         void ChargingMessage(string message);
     }
 
+
     public class Display : IDisplay
     {
         public Display()
