@@ -18,16 +18,7 @@
       <Field Name="_door" />
       <Field Name="_rfidReader" />
       <Field Name="_display" />
-      <Field Name="_log" />
     </ShowAsAssociation>
-  </Class>
-  <Class Name="Ladeskab.Logger">
-    <Position X="10" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAIAAAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Logger.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Ladeskab.RfidReader">
     <Position X="10" Y="3.25" Width="1.5" />
@@ -44,8 +35,8 @@
       <FileName>ChargeControl.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="_display" />
       <Field Name="_usbCharger" />
+      <Field Name="_display" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
@@ -62,6 +53,14 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Display.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Ladeskab.Logger">
+    <Position X="10" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logger.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -86,13 +85,6 @@
       <FileName>Door.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Ladeskab.ILogger">
-    <Position X="8.25" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Logger.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="Ladeskab.IRfidReader">
     <Position X="8.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
@@ -105,6 +97,13 @@
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAAQAAAAAgAAAAAAAAAAAEAAAAAQAAAAAA=</HashCode>
       <FileName>UsbSimulator\IUsbCharger.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Ladeskab.ILogger">
+    <Position X="8.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logger.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

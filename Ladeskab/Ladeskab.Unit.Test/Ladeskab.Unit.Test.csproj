@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="ChargeControlUnitTest.cs" />
     <Compile Include="DoorUnitTest.cs" />
+    <Compile Include="LoggerUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StationControlUnitTest.cs" />
     <Compile Include="TestUsbChargerSimulator.cs" />

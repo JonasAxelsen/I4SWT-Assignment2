@@ -9,7 +9,7 @@ namespace Ladeskab
 {
     public interface ILogger
     {
-        void LogDoorUnlocked(int id);
+        void LogDoorUnlocked(int id, StreamWriter output = null);
         void LogDoorLocked(int id);
     }
 
@@ -23,18 +23,18 @@ namespace Ladeskab
             _logFile = logFile;
         }
 
-        public void LogDoorUnlocked(int id)
+        public void LogDoorUnlocked(int id, StreamWriter output = null)
         {
             if (!File.Exists(_logFile))
             {
-                using (StreamWriter output = File.CreateText(_logFile))
+                using (output ?? File.CreateText(_logFile))
                 {
                     output.WriteLine($"Door Unlocked at {DateTime.Now:T} by {id}");
                 }
             }
             else
             {
-                using (StreamWriter output = File.AppendText(_logFile))
+                using (output ?? File.AppendText(_logFile))
                 {
                     output.WriteLine($"Door Unlocked at {DateTime.Now:T} by {id}");
                 }
