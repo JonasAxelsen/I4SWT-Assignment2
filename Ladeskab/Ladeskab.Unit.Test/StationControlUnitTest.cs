@@ -151,7 +151,6 @@ namespace Ladeskab.Unit.Test
 
         #endregion
 
-
         #region DoorOpen
 
         // RfidDetected_DoorOpen
@@ -165,7 +164,8 @@ namespace Ladeskab.Unit.Test
             // Arrange
 
             // Act
-            _fakeDoor.OpenDoor();
+            _fakeDoor.DoorOpenEvent += Raise.EventWith(_fakeDoor, new DoorOpenEventArgs());
+            _fakeRfidReader.RfidReadEvent += Raise.EventWith(_fakeRfidReader, new RfidReadEventArgs(3));
         }
 
         [Test]
@@ -216,29 +216,117 @@ namespace Ladeskab.Unit.Test
         // RfidDetected_Locked_CorrectId_LogDoorUnlocked_Called
         // RfidDetected_Locked_CorrectId_StationMessage_Called
 
+        public void RfidDetected_Locked_CorrectId()
+        {
+            // Arrange
+            int testId = 3;
+
+            // Act
+            _fakeChargeControl.IsConnected().ReturnsForAnyArgs(true);
+            _fakeRfidReader.RfidReadEvent += Raise.EventWith(_fakeRfidReader, new RfidReadEventArgs(testId));
+            // Nu burde den være i Locked mode.
+            // Vi kalder event igen med samme rfid, så burde den låse op og være available
+            _fakeRfidReader.RfidReadEvent += Raise.EventWith(_fakeRfidReader, new RfidReadEventArgs(testId));
+        }
+
         [Test]
         public void RfidDetected_Locked_CorrectId_StopCharge_Called()
         {
-            // Arrange
-
-            // Act
-            // TODO: Jeg stopper her, fordi StationControl er helt forkert. Den kan ikke komme i stadiet Locked. Den tjekker ikke om døren er locked + den gør ikke noget når døren lukkes/åbnes. Af Valdemar 18-03-2020
-
+            RfidDetected_Locked_CorrectId();
 
             // Assert
-
+            _fakeChargeControl.Received(1).StopCharge();
         }
+
+        [Test]
+        public void RfidDetected_Locked_CorrectId_UnlockDoor_Called()
+        {
+            RfidDetected_Locked_CorrectId();
+
+            // Assert
+            _fakeDoor.Received(1).UnlockDoor();
+        }
+
+        [Test]
+        public void RfidDetected_Locked_CorrectId_LogDoorUnlocked_Called()
+        {
+            RfidDetected_Locked_CorrectId();
+
+            // Assert
+            _fakeLogger.ReceivedWithAnyArgs(1).LogDoorUnlocked(1);
+        }
+
+        [Test]
+        public void RfidDetected_Locked_CorrectId_StationMessage_Called()
+        {
+            RfidDetected_Locked_CorrectId();
+
+            // Assert
+            _fakeDisplay.Received(1).StationMessage("Tag din telefon ud af skabet og luk døren");
+        }
+
+
 
         #endregion
 
         #region WrongId
 
-        // RfidDetected_Locked_WrongId ........
+        // RfidDetected_Locked_WrongId 
+        // RfidDetected_Locked_WrongId_StopCharge_NotCalled
+        // RfidDetected_Locked_WrongId_UnlockDoor_NotCalled
+        // RfidDetected_Locked_WrongId_LogDoorUnlocked_NotCalled
+        // RfidDetected_Locked_WrongId_StationMessage_Called
 
-        // TODO: Har skal der testes det modsatte af hvad der sker hvis id er korrekt. Lav CorrectId først!
+        public void RfidDetected_Locked_WrongId()
+        {
+            // Arrange
+            int testId = 3;
+
+            // Act
+            _fakeChargeControl.IsConnected().ReturnsForAnyArgs(true);
+            _fakeRfidReader.RfidReadEvent += Raise.EventWith(_fakeRfidReader, new RfidReadEventArgs(testId));
+            // Nu burde den være i Locked mode.
+            // Vi kalder event igen med andet rfid, så burde den ikke låse op
+            _fakeRfidReader.RfidReadEvent += Raise.EventWith(_fakeRfidReader, new RfidReadEventArgs(testId-1));
+        }
+
+        [Test]
+        public void RfidDetected_Locked_WrongId_StopCharge_NotCalled()
+        {
+            RfidDetected_Locked_WrongId();
+
+            // Assert
+            _fakeChargeControl.DidNotReceive().StopCharge();
+        }
+
+        [Test]
+        public void RfidDetected_Locked_WrongId_UnlockDoor_NotCalled()
+        {
+            RfidDetected_Locked_WrongId();
+
+            // Assert
+            _fakeDoor.DidNotReceive().UnlockDoor();
+        }
+
+        [Test]
+        public void RfidDetected_Locked_WrongId_LogDoorUnlocked_NotCalled()
+        {
+            RfidDetected_Locked_WrongId();
+
+            // Assert
+            _fakeLogger.DidNotReceiveWithAnyArgs().LogDoorUnlocked(1);
+        }
+
+        [Test]
+        public void RfidDetected_Locked_WrongId_StationMessage_Called()
+        {
+            RfidDetected_Locked_WrongId();
+
+            // Assert
+            _fakeDisplay.Received(1).StationMessage("Forkert RFID tag");
+        }
 
         #endregion
-
 
         #endregion
 
@@ -247,6 +335,7 @@ namespace Ladeskab.Unit.Test
 
 
         #region DoorEvents
+
 
 
         #endregion

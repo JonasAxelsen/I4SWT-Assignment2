@@ -73,7 +73,7 @@ namespace Ladeskab
                     break;
 
                 case LadeskabState.DoorOpen:
-                    
+
                     break;
 
                 case LadeskabState.Locked:
