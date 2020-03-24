@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Ladeskab.StationControl">
-    <Position X="4.75" Y="2.25" Width="1.5" />
+    <Position X="5.5" Y="3.5" Width="1.5" />
     <NestedTypes>
       <Enum Name="Ladeskab.StationControl.LadeskabState" Collapsed="true">
         <TypeIdentifier>
@@ -15,45 +15,96 @@
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="_charger" />
-      <Field Name="_display" />
       <Field Name="_door" />
-      <Field Name="_log" />
       <Field Name="_rfidReader" />
+      <Field Name="_display" />
+      <Field Name="_log" />
     </ShowAsAssociation>
   </Class>
+  <Class Name="Ladeskab.Logger">
+    <Position X="10" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Ladeskab.RfidReader">
+    <Position X="10" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAABAAAAAAEAAAA=</HashCode>
+      <FileName>RfidReader.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Ladeskab.ChargeControl">
+    <Position X="3.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAABAAAEACAAAAAAAAAEAAAAAQAAAAAA=</HashCode>
+      <FileName>ChargeControl.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_display" />
+      <Field Name="_usbCharger" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Ladeskab.Door" BaseTypeListCollapsed="true">
+    <Position X="1" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACCAACAAAAAAAAABEABAAIAABAAAAAIAAAAAAA=</HashCode>
+      <FileName>Door.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Ladeskab.Display">
+    <Position X="1" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Display.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Interface Name="Ladeskab.IChargeControl">
-    <Position X="2.75" Y="0.5" Width="1.5" />
+    <Position X="5.5" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAEAAAAAQAAAAAA=</HashCode>
       <FileName>ChargeControl.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Ladeskab.IDisplay">
-    <Position X="0.5" Y="2.5" Width="1.5" />
+    <Position X="2.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Display.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Ladeskab.IDoor">
-    <Position X="2.25" Y="3.75" Width="1.5" />
+    <Position X="2.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACCAACAAAAAAAAABEAAAAAAABAAAAAAAAAAAAA=</HashCode>
       <FileName>Door.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Ladeskab.ILogger">
-    <Position X="7.25" Y="4.25" Width="1.5" />
+    <Position X="8.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Logger.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Ladeskab.IRfidReader">
-    <Position X="9.25" Y="2.5" Width="1.5" />
+    <Position X="8.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAEAAAA=</HashCode>
       <FileName>RfidReader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Ladeskab.UsbSimulator.IUsbCharger">
+    <Position X="1" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAQAAAAAgAAAAAAAAAAAEAAAAAQAAAAAA=</HashCode>
+      <FileName>UsbSimulator\IUsbCharger.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />
