@@ -95,7 +95,6 @@ namespace Ladeskab
             }
         }
 
-        // Her mangler de andre trigger handlere
         private void DoorOpened(object sender, DoorOpenEventArgs e)
         {
             if (_state == LadeskabState.Available)

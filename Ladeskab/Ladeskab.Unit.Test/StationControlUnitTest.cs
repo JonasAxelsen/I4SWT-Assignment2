@@ -336,14 +336,31 @@ namespace Ladeskab.Unit.Test
 
         #region DoorEvents
 
+        [Test]
+        public void DoorOpened_StationMessage_Called()
+        {
+            // Arrange
 
+            // Act
+            _fakeDoor.DoorOpenEvent += Raise.EventWith(_fakeDoor, new DoorOpenEventArgs());
+
+            // Assert
+            _fakeDisplay.Received(1).StationMessage("Tilslut telefon!");
+
+        }
+
+        [Test]
+        public void DoorClosed_StationMessage_Called()
+        {
+            // Act
+            _fakeDoor.DoorOpenEvent += Raise.EventWith(_fakeDoor, new DoorOpenEventArgs());
+            _fakeDoor.DoorCloseEvent += Raise.EventWith(_fakeDoor, new DoorCloseEventArgs());
+
+            // Assert
+            _fakeDisplay.Received(1).StationMessage("Indlæs RFID");
+        }
 
         #endregion
 
-
-        #region RfidEvents
-
-
-        #endregion
     }
 }
