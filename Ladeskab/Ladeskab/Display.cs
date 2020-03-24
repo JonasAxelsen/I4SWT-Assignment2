@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace Ladeskab
 {
     public interface IDisplay
     {
-        void StationMessage(string message);
+        void StationMessage(string message, StreamWriter writer = null);
         void ChargingMessage(string message);
     }
 
@@ -19,14 +20,15 @@ namespace Ladeskab
         {
         }
 
-        public void StationMessage(string message)
+        public void StationMessage(string message, StreamWriter writer = null)
         {
-            System.Console.WriteLine(message);
+            if (writer != null) Console.SetOut(writer);
+            Console.WriteLine(message);
         }
 
         public void ChargingMessage(string message)
         {
-            System.Console.Write(message);
+            Console.Write(message);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +11,13 @@ namespace Ladeskab.Unit.Test
 {
     class DisplayUnitTest
     {
-        private IDisplay _uut;
+        private Display _uut;
 
         [SetUp]
         public void Setup()
         {
-            _uut = Substitute.For<IDisplay>();
+            _uut = new Display();
+
         }
 
         [Test]
@@ -59,5 +61,27 @@ namespace Ladeskab.Unit.Test
             _uut.StationMessage("Test");
             _uut.DidNotReceive().ChargingMessage("Test");
         }
+
+
+        [Test]
+        public void StationMessage_WritesToConsole()
+        {
+            // https://docs.microsoft.com/en-us/dotnet/api/system.console.setout?view=netframework-4.8
+            // Arrange
+            string message = "test";
+
+            using (var stream = new MemoryStream())
+            using (var writer = new StreamWriter(stream))
+            {
+                // Act
+                _uut.StationMessage(message, writer);
+
+                // Assert
+                string actual = Encoding.UTF8.GetString(stream.ToArray());
+                Assert.That(actual, Is.EqualTo(message));
+            }
+        }
+
+
     }
 }
