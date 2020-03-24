@@ -17,7 +17,7 @@ namespace Ladeskab.Unit.Test
         [SetUp]
         public void Setup()
         {
-            _logFile = "../../logfile.txt";
+            _logFile = "../../logfile1.txt";
             _uut = new Logger(_logFile);
 
 
