@@ -9,8 +9,8 @@ namespace Ladeskab
 {
     public interface IDisplay
     {
-        void StationMessage(string message, StreamWriter writer = null);
-        void ChargingMessage(string message);
+        void StationMessage(string message, TextWriter writer = null);
+        void ChargingMessage(string message, TextWriter writer = null);
     }
 
 
@@ -20,15 +20,27 @@ namespace Ladeskab
         {
         }
 
-        public void StationMessage(string message, StreamWriter writer = null)
+        public void StationMessage(string message, TextWriter writer = null)
         {
-            if (writer != null) Console.SetOut(writer);
-            Console.WriteLine(message);
+            Message(message, writer);
         }
 
-        public void ChargingMessage(string message)
+        public void ChargingMessage(string message, TextWriter writer = null)
         {
-            Console.Write(message);
+            Message(message, writer);
+        }
+
+        private void Message(string message, TextWriter writer = null)
+        {
+            if (writer == null)
+            {
+                writer = Console.Out;
+            }
+
+            using (writer)
+            {
+                writer.Write(message);
+            }
         }
     }
 }
