@@ -27,14 +27,14 @@ namespace Ladeskab
         {
             if (!File.Exists(_logFile))
             {
-                using (output ?? File.CreateText(_logFile))
+                using (output = (output is null) ? File.CreateText(_logFile) : output)
                 {
                     output.WriteLine($"Door Unlocked at {DateTime.Now:T} by {id}");
                 }
             }
             else
             {
-                using (output ?? File.AppendText(_logFile))
+                using (output = (output is null) ? File.AppendText(_logFile) : output)
                 {
                     output.WriteLine($"Door Unlocked at {DateTime.Now:T} by {id}");
                 }
@@ -45,14 +45,15 @@ namespace Ladeskab
         {
             if (!File.Exists(_logFile))
             {
-                using (output ?? File.CreateText(_logFile))
+                //using (output  File.CreateText(_logFile))
+                using (output = (output is null) ? File.CreateText(_logFile) : output)
                 {
                     output.WriteLine($"Door locked at {DateTime.Now:T} by {id}");
                 }
             }
             else
             {
-                using (output ?? File.AppendText(_logFile))
+                using (output = (output is null) ? File.AppendText(_logFile) : output)
                 {
                     output.WriteLine($"Door locked at {DateTime.Now:T} by {id}");
                 }
