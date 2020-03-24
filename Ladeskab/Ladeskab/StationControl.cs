@@ -24,6 +24,7 @@ namespace Ladeskab
 
                
 
+
         private LadeskabState _state;
         private IChargeControl _charger;
         private IDoor _door;
