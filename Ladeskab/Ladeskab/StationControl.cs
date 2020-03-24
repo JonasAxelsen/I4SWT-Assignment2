@@ -21,10 +21,6 @@ namespace Ladeskab
         };
 
         // Her mangler flere member variable
-
-               
-
-
         private LadeskabState _state;
         private IChargeControl _charger;
         private IDoor _door;
