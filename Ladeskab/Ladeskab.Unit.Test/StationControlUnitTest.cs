@@ -262,7 +262,7 @@ namespace Ladeskab.Unit.Test
             RfidDetected_Locked_CorrectId();
 
             // Assert
-            _fakeDisplay.Received(1).StationMessage("Tag din telefon ud af skabet og luk døren");
+            _fakeDisplay.Received(1).StationMessage("Tag din telefon ud af skabet og luk døren\n");
         }
 
 
@@ -323,7 +323,7 @@ namespace Ladeskab.Unit.Test
             RfidDetected_Locked_WrongId();
 
             // Assert
-            _fakeDisplay.Received(1).StationMessage("Forkert RFID tag");
+            _fakeDisplay.Received(1).StationMessage("Forkert RFID tag\n");
         }
 
         #endregion
@@ -345,7 +345,7 @@ namespace Ladeskab.Unit.Test
             _fakeDoor.DoorOpenEvent += Raise.EventWith(_fakeDoor, new DoorOpenEventArgs());
 
             // Assert
-            _fakeDisplay.Received(1).StationMessage("Tilslut telefon!");
+            _fakeDisplay.Received(1).StationMessage("Tilslut telefon!\n");
 
         }
 
@@ -357,7 +357,7 @@ namespace Ladeskab.Unit.Test
             _fakeDoor.DoorCloseEvent += Raise.EventWith(_fakeDoor, new DoorCloseEventArgs());
 
             // Assert
-            _fakeDisplay.Received(1).StationMessage("Indlæs RFID");
+            _fakeDisplay.Received(1).StationMessage("Indlæs RFID\n");
         }
 
         #endregion
