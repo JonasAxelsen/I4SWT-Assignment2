@@ -61,13 +61,13 @@ namespace Ladeskab
                         _charger.StartCharge();
                         _oldId = e.Id;
                         _log.LogDoorLocked(_oldId);
-                        _display.StationMessage("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
+                        _display.StationMessage("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.\n");
 
                         _state = LadeskabState.Locked;
                     }
                     else if (!_charger.IsConnected())
                     {
-                        _display.StationMessage("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
+                        _display.StationMessage("Din telefon er ikke ordentlig tilsluttet. Prøv igen.\n");
                     }
 
                     break;
@@ -82,13 +82,13 @@ namespace Ladeskab
                         _charger.StopCharge();
                         _door.UnlockDoor();
                         _log.LogDoorUnlocked(_oldId);
-                        _display.StationMessage("Tag din telefon ud af skabet og luk døren");
+                        _display.StationMessage("Tag din telefon ud af skabet og luk døren\n");
 
                         _state = LadeskabState.Available;
                     }
                     else
                     {
-                        _display.StationMessage("Forkert RFID tag");
+                        _display.StationMessage("Forkert RFID tag\n");
                     }
 
                     break;
@@ -99,7 +99,7 @@ namespace Ladeskab
         {
             if (_state == LadeskabState.Available)
             {
-                _display.StationMessage("Tilslut telefon!");
+                _display.StationMessage("Tilslut telefon!\n");
 
                 _state = LadeskabState.DoorOpen;
             }
@@ -109,7 +109,7 @@ namespace Ladeskab
         {
             if (_state == LadeskabState.DoorOpen)
             {
-                _display.StationMessage("Indlæs RFID");
+                _display.StationMessage("Indlæs RFID\n");
 
                 _state = LadeskabState.Available;
             }

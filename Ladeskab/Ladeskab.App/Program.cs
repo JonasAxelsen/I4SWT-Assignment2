@@ -21,7 +21,7 @@ namespace Ladeskab.App
             {
                 char input;
                 //System.Console.WriteLine("Indtast E, O, C, R: ");
-                display.StationMessage("Indtast (E)xit, (O)pen door, (C)lose door, (R)FID: ");
+                display.StationMessage("Indtast (E)xit, (O)pen door, (C)lose door, (R)FID: \n");
                 input = Console.ReadKey(true).KeyChar;
 
                 switch (Char.ToUpper(input))
@@ -39,7 +39,7 @@ namespace Ladeskab.App
                         break;
 
                     case 'R':
-                        display.StationMessage("Indtast RFID id: ");
+                        display.StationMessage("Indtast RFID id: \n");
                         string idString = System.Console.ReadLine();
 
                         int id = Convert.ToInt32(idString);
